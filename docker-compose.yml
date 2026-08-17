@@ -1,0 +1,49 @@
+version: "3.9"
+
+# Default setup uses SQLite (a shared volume so both containers's runtime/
+# directory persists). To use Postgres+pgvector instead, uncomment the
+# `postgres` service below and set DATABASE_URL accordingly in your .env.
+
+services:
+  erca_ris_backend:
+    build:
+      context: .
+      dockerfile: Dockerfile.backend
+    container_name: erca_ris_backend
+    ports:
+      - "5001:5001"
+    env_file:
+      - .env
+    volumes:
+      - erca_runtime:/app/runtime
+    command: ["python", "-m", "erca_ris.api"]
+
+  demo_app:
+    build:
+      context: .
+      dockerfile: Dockerfile.demo
+    container_name: erca_ris_demo_app
+    ports:
+      - "5000:5000"
+    depends_on:
+      - erca_ris_backend
+    environment:
+      - ERCA_URL=http://erca_ris_backend:5001/api/incidents
+    command: ["python", "-m", "sample_app.app"]
+
+  # --- Optional: PostgreSQL + pgvector ---
+  # postgres:
+  #   image: ankane/pgvector:latest
+  #   container_name: erca_ris_postgres
+  #   environment:
+  #     POSTGRES_DB: erca_ris
+  #     POSTGRES_USER: erca
+  #     POSTGRES_PASSWORD: erca
+  #   ports:
+  #     - "5432:5432"
+  #   volumes:
+  #     - erca_pgdata:/var/lib/postgresql/data
+
+volumes:
+  erca_runtime:
+  # erca_pgdata:

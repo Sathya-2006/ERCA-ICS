@@ -1,0 +1,67 @@
+{
+  "@payment-team": {
+    "team": "Payment Engineering",
+    "developers": [
+      {"username": "payment-dev", "display_name": "Payment Service Developer", "email": "payment-dev@example.com", "active": true, "priority": 10},
+      {"username": "payment-backup", "display_name": "Payment Backup Developer", "email": "payment-backup@example.com", "active": true, "priority": 20},
+      {"username": "payment-old", "display_name": "Former Payment Developer", "email": "payment-old@example.com", "active": false, "priority": 99}
+    ]
+  },
+  "@auth-team": {
+    "team": "Authentication Engineering",
+    "developers": [
+      {"username": "auth-dev", "display_name": "Auth Service Developer", "email": "auth-dev@example.com", "active": true, "priority": 10},
+      {"username": "auth-backup", "display_name": "Auth Backup Developer", "email": "auth-backup@example.com", "active": true, "priority": 20},
+      {"username": "auth-old", "display_name": "Former Auth Developer", "email": "auth-old@example.com", "active": false, "priority": 99}
+    ]
+  },
+  "@orders-team": {
+    "team": "Orders Engineering",
+    "developers": [
+      {"username": "orders-dev", "display_name": "Orders Service Developer", "email": "orders-dev@example.com", "active": true, "priority": 10},
+      {"username": "orders-backup", "display_name": "Orders Backup Developer", "email": "orders-backup@example.com", "active": true, "priority": 20}
+    ]
+  },
+  "@inventory-team": {
+    "team": "Inventory Engineering",
+    "developers": [
+      {"username": "inventory-dev", "display_name": "Inventory Service Developer", "email": "inventory-dev@example.com", "active": true, "priority": 10},
+      {"username": "inventory-backup", "display_name": "Inventory Backup Developer", "email": "inventory-backup@example.com", "active": true, "priority": 20}
+    ]
+  },
+  "@notification-team": {
+    "team": "Notification Engineering",
+    "developers": [
+      {"username": "notification-dev", "display_name": "Notification Service Developer", "email": "notification-dev@example.com", "active": true, "priority": 10},
+      {"username": "notification-backup", "display_name": "Notification Backup Developer", "email": "notification-backup@example.com", "active": true, "priority": 20}
+    ]
+  },
+  "@search-team": {
+    "team": "Search Engineering",
+    "developers": [
+      {"username": "search-dev", "display_name": "Search Service Developer", "email": "search-dev@example.com", "active": true, "priority": 10},
+      {"username": "search-backup", "display_name": "Search Backup Developer", "email": "search-backup@example.com", "active": true, "priority": 20}
+    ]
+  },
+  "@storage-team": {
+    "team": "Storage Engineering",
+    "developers": [
+      {"username": "storage-dev", "display_name": "Storage Service Developer", "email": "storage-dev@example.com", "active": true, "priority": 10},
+      {"username": "storage-backup", "display_name": "Storage Backup Developer", "email": "storage-backup@example.com", "active": true, "priority": 20}
+    ]
+  },
+  "@reporting-team": {
+    "team": "Reporting Engineering",
+    "developers": [
+      {"username": "reporting-dev", "display_name": "Reporting Service Developer", "email": "reporting-dev@example.com", "active": true, "priority": 10},
+      {"username": "reporting-backup", "display_name": "Reporting Backup Developer", "email": "reporting-backup@example.com", "active": true, "priority": 20}
+    ]
+  },
+  "@demo-platform-team": {
+    "team": "Demo Platform Engineering",
+    "developers": [
+      {"username": "platform-dev", "display_name": "Platform Developer", "email": "platform@company.com", "active": true, "priority": 10},
+      {"username": "platform-admin", "display_name": "Platform Admin", "email": "platform.admin@company.com", "active": true, "priority": 20}
+    ]
+  }
+}

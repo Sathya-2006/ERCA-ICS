@@ -1,0 +1,58 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Demo Commerce Application</title>
+<style>
+body{font-family:Inter,Arial,sans-serif;max-width:1100px;margin:40px auto;padding:20px;background:#f4f6f8;color:#172033}
+h1{margin-bottom:5px}.sub{color:#687386;margin-bottom:28px}
+.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+button{padding:18px;border:1px solid #d9dee7;background:#fff;border-radius:12px;cursor:pointer;text-align:left}
+button:hover{border-color:#356cff;box-shadow:0 4px 14px #0001}
+#result{margin-top:24px;background:#101827;color:#e8edf7;padding:20px;border-radius:12px;white-space:pre-wrap}
+a{color:#356cff}
+</style>
+</head>
+<body>
+<h1>Demo Commerce Application</h1>
+<div class="sub">Production-style incident simulation. Any failure is automatically sent to ERCA & RIS.</div>
+<div class="grid">
+<button onclick="fail('payment')">💳<br><b>Payment</b><br>Gateway timeout</button>
+<button onclick="fail('auth')">🔐<br><b>Authentication</b><br>Token validation</button>
+<button onclick="fail('orders')">🗄️<br><b>Orders</b><br>Connection pool</button>
+<button onclick="fail('inventory')">📦<br><b>Inventory</b><br>Service unavailable</button>
+<button onclick="fail('notification')">📧<br><b>Notification</b><br>Email provider</button>
+<button onclick="fail('search')">🔎<br><b>Search</b><br>Request timeout</button>
+<button onclick="fail('storage')">☁️<br><b>Storage</b><br>Object storage</button>
+<button onclick="fail('reports')">📊<br><b>Reports</b><br>Database query</button>
+</div>
+<div id="summary"></div>
+<pre id="result">Choose a failure.</pre>
+<script>
+async function fail(scenario){
+ const box=document.getElementById('result');
+ const summary=document.getElementById('summary');
+ summary.innerHTML='';
+ box.textContent='Triggering incident...';
+ const r=await fetch('/api/demo/'+scenario,{method:'POST'});
+ const data=await r.json();
+ box.textContent=JSON.stringify(data,null,2);
+
+ const erca = data.erca || {};
+ if (erca.incident_id) {
+   const a = erca.analysis || {};
+   const own = erca.ownership || {};
+   summary.innerHTML = `
+     <div style="background:#fff;border:1px solid #d9dee7;border-radius:12px;padding:18px;margin-top:16px">
+       <b>Incident:</b> ${erca.incident_id} &nbsp; <b>Status:</b> ${erca.status}<br>
+       <b>Root Cause:</b> ${a.root_cause || 'Analyzing...'} <br>
+       <b>Confidence:</b> ${a.confidence != null ? Math.round(a.confidence*100)+'%' : 'n/a'} (${a.analysis_status || ''})<br>
+       <b>Owner:</b> ${own.owner || 'n/a'} &nbsp; <b>Developer:</b> ${own.developer || 'n/a'}<br>
+       <b>Source:</b> ${own.file_path || 'n/a'} :: ${own.function_name || 'n/a'} (line ${own.line_number || 'n/a'})<br>
+       <a href="http://127.0.0.1:5001/api/incidents/${erca.incident_id}" target="_blank">View full incident on ERCA&amp;RIS API</a>
+     </div>`;
+ }
+}
+</script>
+</body>
+</html>

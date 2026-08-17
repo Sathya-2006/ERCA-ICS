@@ -1,0 +1,9 @@
+/sample_app/services/payment/ @payment-team
+/sample_app/services/auth/ @auth-team
+/sample_app/services/orders/ @orders-team
+/sample_app/services/inventory/ @inventory-team
+/sample_app/services/notification/ @notification-team
+/sample_app/services/search/ @search-team
+/sample_app/services/storage/ @storage-team
+/sample_app/services/reports/ @reporting-team
+/sample_app/ @demo-platform-team
